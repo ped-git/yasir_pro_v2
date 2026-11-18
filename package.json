@@ -1,0 +1,22 @@
+{
+  "name": "yasir-pro-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-contained interactive Quran reader (interactive_beta) and visual annotation editor, migrated byte-for-byte from yasir_pro.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "npm ci && npm ci --prefix app/interactive_edit && npx playwright install chromium",
+    "start:reader": "node scripts/serve-reader.mjs",
+    "start:editor": "node app/interactive_edit/server.mjs",
+    "test": "npm run test:functional && npm run test:visual",
+    "test:functional": "node --test tests/functional/*.test.mjs && node tests/functional/editor-browser.mjs",
+    "test:editor-ui": "node tests/functional/editor-browser.mjs",
+    "test:visual": "node tests/visual/compare.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}
